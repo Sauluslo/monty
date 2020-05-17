@@ -45,6 +45,7 @@ void read_file(char *file_name, stack_t **head)
 		exit(-1);
 	}
 }
+
 /**
  * isnumber - checks if a string is a number
  * @str: string being passed
@@ -70,11 +71,14 @@ int isnumber(char *str)
 	}
 	return (1);
 }
+
 /**
- * 
- * 
- * 
- * 
+ * parse_line_out - parse line
+ * @line: line of the file
+ * @head: first argument of the stack
+ * @count_line: Count line in position
+ *
+ * Return: none
 */
 char *parse_line_out(char *line, stack_t **head, unsigned int count_line)
 {
@@ -101,6 +105,7 @@ char *parse_line_out(char *line, stack_t **head, unsigned int count_line)
 	}
 	return (op_code);
 }
+
 /**
  * _isdigit - check the code for Holberton School students.
  * @c: the character c

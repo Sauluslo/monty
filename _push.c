@@ -8,11 +8,6 @@
 */
 void _push(stack_t **head, unsigned int value)
 {
-	/*stack_t *aux;
-	aux = (stack_t)malloc(sizeof(stack_t));
-	aux->value = value;
-	aux->next = (*head);
-	(*head) = aux;*/
 	add_dnodeint(head, value);
 }
 /**
@@ -31,7 +26,9 @@ void add_dnodeint(stack_t **head, const int n)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		free(new);
-		/* Free the past allocs in stack */
+		/**
+		 * Free the past allocs in stack
+		*/
 		free_dlistint(*head);
 		exit(EXIT_FAILURE);
 	}
