@@ -6,18 +6,18 @@
 */
 void _add(stack_t **stack, unsigned int line_number)
 {
-	stack_t *tmp = *stack;
+	stack_t *temp = *stack;
 	int sum = 0, i = 0;
 
-	if (tmp == NULL)
+	if (temp == NULL)
 	{
 		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
-	while (tmp)
+	while (temp)
 	{
-		tmp = tmp->next;
+		temp = temp->next;
 		i++;
 	}
 

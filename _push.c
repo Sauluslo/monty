@@ -17,7 +17,7 @@ void _push(stack_t **head, unsigned int value)
 }
 /**
  * add_dnodeint - function that adds a new node at the beginning
- * of a dlistint_t list.
+ * of a stack_t list.
  * @head: pointer head of the DLL
  * @n: const int
  *
@@ -30,15 +30,17 @@ void add_dnodeint(stack_t **head, const int n)
 	if (new == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
-		free_dlistint(new);
+		free(new);
+		/* Free the past allocs in stack */
+		free_dlistint(*head);
 		exit(EXIT_FAILURE);
 	}
+
 	new->n = n;
 	new->next = NULL;
 	new->prev = NULL;
 	if (*head == NULL)
 	{
-		new->next = NULL;
 		*head = new;
 		return;
 	}
@@ -46,24 +48,4 @@ void add_dnodeint(stack_t **head, const int n)
 	new->next = temp;
 	temp->prev = new;
 	*head = new;
-	free_dlistint(*head);
-}
-/**
- * free_dlistint - function that free a stack_t list.
- * @head: pointer head of a DLL.
- *
- * Return: void, function free allocated memory on head.
-*/
-void free_dlistint(stack_t *head)
-{
-	stack_t *tempo;
-
-	if (head == NULL)
-		return;
-	while (head != NULL)
-	{
-		tempo = head;
-		free(tempo);
-		head = head->next;
-	}
 }

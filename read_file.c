@@ -8,7 +8,7 @@
 */
 void read_file(char *file_name, stack_t **head)
 {
-	char *line;
+	char *instruction;
 	int aux_close, read, count_line = 1;
 	size_t bufsize = 0;
 	instruct_func process;
@@ -23,21 +23,22 @@ void read_file(char *file_name, stack_t **head)
 
 	while ((read = (getline(&global.buffer, &bufsize, global.file))) != -1)
 	{
-		line = parse_line_out(global.buffer, head, count_line);
-		if (line == NULL)
+		instruction = parse_line_out(global.buffer, head, count_line);
+		if (instruction == NULL)
 		{
 			count_line++;
 			continue;
 		}
-		process = get_func(line);
+		process = get_func(instruction);
 		if (process == NULL)
 		{
-			fprintf(stderr, "L%d: unknown instruction %s\n", count_line, line);
+			fprintf(stderr, "L%d: unknown instruction %s\n", count_line, instruction);
 			exit(EXIT_FAILURE);
 		}
-		process(head, count_line);
+		process(head, global.push_argv);
 		count_line++;
 	}
+	free(global.buffer);
 	aux_close = fclose(global.file);
 	if (aux_close == -1)
 	{

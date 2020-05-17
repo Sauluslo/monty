@@ -6,12 +6,12 @@
 */
 void _pall(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
 {
-	stack_t *runner;
+	stack_t *iterator;
 
-	runner = *stack;
-	while (runner != NULL)
+	iterator = *stack;
+	while (iterator != NULL)
 	{
-		printf("%d\n", runner->n);
-		runner = runner->next;
+		printf("%d\n", iterator->n);
+		iterator = iterator->next;
 	}
 }
