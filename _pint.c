@@ -12,6 +12,7 @@ void _pint(stack_t **stack, unsigned int line_number)
 	iterator = *stack;
 	if (iterator == NULL)
 	{
+		line_number += 1;
 		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
 		fclose(global.file);
 		free_dlistint(*stack);

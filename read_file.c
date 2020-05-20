@@ -100,6 +100,9 @@ char *parse_line_out(char *line, stack_t **head, unsigned int count_line)
 		else
 		{
 			fprintf(stderr, "L%d: usage: push integer\n", count_line);
+			fclose(global.file);
+		    free_dlistint(*head);
+		    free(global.buffer);
 			exit(EXIT_FAILURE);
 		}
 	}

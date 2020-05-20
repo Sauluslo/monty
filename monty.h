@@ -8,6 +8,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include <unistd.h>
+#include <ctype.h>
 
 /**
  * struct global_variable - opcoode and its function
