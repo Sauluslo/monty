@@ -1,4 +1,7 @@
 #include "monty.h"
+global_t global;
+
+
 /**
  * main - program
  * @argc: number of argv that exist
@@ -6,7 +9,6 @@
  *
  * Return: always successful
 */
-global_t global;
 int main(int argc, char **argv)
 {
 	stack_t *head;

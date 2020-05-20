@@ -7,13 +7,13 @@
 */
 void _pint(stack_t **stack, unsigned int line_number)
 {
-	stack_t *runner;
+	stack_t *iterator;
 
-	runner = *stack;
-	if (runner == NULL)
+	iterator = *stack;
+	if (iterator == NULL)
 	{
 		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	printf("%d\n", runner->n);
+	printf("%d\n", iterator->n);
 }
