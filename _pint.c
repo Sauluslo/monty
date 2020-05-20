@@ -13,6 +13,9 @@ void _pint(stack_t **stack, unsigned int line_number)
 	if (iterator == NULL)
 	{
 		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
+		fclose(global.file);
+		free_dlistint(*stack);
+		free(global.buffer);
 		exit(EXIT_FAILURE);
 	}
 	printf("%d\n", iterator->n);
