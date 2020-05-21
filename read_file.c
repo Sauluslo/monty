@@ -33,6 +33,9 @@ void read_file(char *file_name, stack_t **head)
 		if (process == NULL)
 		{
 			fprintf(stderr, "L%d: unknown instruction %s\n", count_line, instruction);
+			fclose(global.file);
+		    free_dlistint(*head);
+		    free(global.buffer);
 			exit(EXIT_FAILURE);
 		}
 		process(head, global.push_argv);
