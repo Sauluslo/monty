@@ -13,7 +13,11 @@ void _swap(stack_t **stack, unsigned int line_number)
 	iterator = *stack;
 	if (iterator == NULL || iterator->next == NULL)
 	{
+		line_number += 1;
 		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
+		fclose(global.file);
+		free_dlistint(*stack);
+		free(global.buffer);
 		exit(EXIT_FAILURE);
 	}
 	temp = iterator->n;
