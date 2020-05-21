@@ -12,6 +12,9 @@ void _pop(stack_t **stack, unsigned int line_number)
 	if (stack == NULL || *stack == NULL)
 	{
 		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
+		fclose(global.file);
+		free_dlistint(*stack);
+		free(global.buffer);
 		exit(EXIT_FAILURE);
 	}
 	*stack = nodo->next;
