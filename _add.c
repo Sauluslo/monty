@@ -11,7 +11,11 @@ void _add(stack_t **stack, unsigned int line_number)
 
 	if (temp == NULL)
 	{
+		line_number += 1;
 		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
+		fclose(global.file);
+		free_dlistint(*stack);
+		free(global.buffer);
 		exit(EXIT_FAILURE);
 	}
 
@@ -23,7 +27,11 @@ void _add(stack_t **stack, unsigned int line_number)
 
 	if (stack == NULL || (*stack)->next == NULL || i <= 1)
 	{
+		line_number += 1;
 		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
+		fclose(global.file);
+		free_dlistint(*stack);
+		free(global.buffer);
 		exit(EXIT_FAILURE);
 	}
 	sum = (*stack)->next->n + (*stack)->n;
