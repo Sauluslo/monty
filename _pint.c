@@ -2,6 +2,7 @@
 /**
  * _pint - print int a top of stack
  * @stack: pointer to linked list stack
+ * @line_number: unused
  *
 */
 void _pint(stack_t **stack, __attribute__ ((unused))unsigned int line_number)

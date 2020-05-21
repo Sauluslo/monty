@@ -21,7 +21,6 @@ void read_file(char *file_name, stack_t **head)
 		fprintf(stderr, "Error: Can't open file %s\n", file_name);
 		exit(EXIT_FAILURE);
 	}
-
 	while ((read = (getline(&global.buffer, &bufsize, global.file))) != -1)
 	{
 		instruction = parse_line_out(global.buffer, head);
@@ -33,7 +32,8 @@ void read_file(char *file_name, stack_t **head)
 		process = get_func(instruction);
 		if (process == NULL)
 		{
-			fprintf(stderr, "L%d: unknown instruction %s\n", global.count_line, instruction);
+			fprintf(stderr, "L%d: unknown instruction %s\n"
+					 , global.count_line, instruction);
 			fclose(global.file);
 		    free_dlistint(*head);
 		    free(global.buffer);
@@ -80,7 +80,6 @@ int isnumber(char *str)
  * parse_line_out - parse line
  * @line: line of the file
  * @head: first argument of the stack
- * @count_line: Count line in position
  *
  * Return: none
 */

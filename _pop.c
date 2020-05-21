@@ -1,7 +1,8 @@
 #include "monty.h"
 /**
  * _pop - remove element a list
- * @stack: pointer to first node
+ * @stack: pointer to first nodo
+ * @line_number: unused
  * Return: void
 */
 void _pop(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
