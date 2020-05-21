@@ -22,6 +22,7 @@ typedef struct global_variable
 {
     FILE *file;
     int push_argv;
+    int count_line;
     char *buffer;
 } global_t;
 
@@ -60,7 +61,7 @@ typedef struct instruction_s
 typedef void (*instruct_func)(stack_t **stack, unsigned int line_number);
 
 int main(int argc, char **argv);
-char *parse_line_out(char *line, stack_t **head, unsigned int count_line);
+char *parse_line_out(char *line, stack_t **head);
 int _isdigit(int c);
 int isnumber(char *str);
 instruct_func get_func(char *str);
@@ -69,11 +70,11 @@ void _push(stack_t **head, unsigned int value);
 void add_dnodeint(stack_t **head, const int n);
 void _pall(stack_t **stack, __attribute__ ((unused))unsigned int line_number);
 void free_dlistint(stack_t *head);
-void _pop(stack_t **stack, unsigned int line_number);
-void _pint(stack_t **stack, unsigned int line_number);
-void _add(stack_t **stack, unsigned int line_number);
+void _pop(stack_t **stack, __attribute__ ((unused))unsigned int line_number);
+void _pint(stack_t **stack, __attribute__ ((unused))unsigned int line_number);
+void _add(stack_t **stack, __attribute__ ((unused))unsigned int line_number);
 int _isalpha(int c);
-void _swap(stack_t **stack, unsigned int line_number);
+void _swap(stack_t **stack, __attribute__ ((unused))unsigned int line_number);
 void _nop(__attribute__ ((unused))stack_t **stack,
 		__attribute__ ((unused)) unsigned int line_number);
 

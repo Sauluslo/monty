@@ -2,17 +2,15 @@
 /**
  * _pop - remove element a list
  * @stack: pointer to first node
- * @line_number: integer
  * Return: void
 */
-void _pop(stack_t **stack, unsigned int line_number)
+void _pop(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
 {
 	stack_t *nodo = *stack;
 
 	if (stack == NULL || *stack == NULL)
 	{
-		line_number += 1;
-		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
+		fprintf(stderr, "L%d: can't pop an empty stack\n", global.count_line);
 		fclose(global.file);
 		free_dlistint(*stack);
 		free(global.buffer);

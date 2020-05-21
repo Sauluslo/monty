@@ -9,10 +9,11 @@
 void read_file(char *file_name, stack_t **head)
 {
 	char *instruction;
-	int aux_close, read, count_line = 1;
+	int aux_close, read;
 	size_t bufsize = 0;
 	instruct_func process;
 
+	global.count_line = 1;
 	global.file = fopen(file_name, "r");
 
 	if (global.file == NULL)
@@ -23,23 +24,23 @@ void read_file(char *file_name, stack_t **head)
 
 	while ((read = (getline(&global.buffer, &bufsize, global.file))) != -1)
 	{
-		instruction = parse_line_out(global.buffer, head, count_line);
+		instruction = parse_line_out(global.buffer, head);
 		if (instruction == NULL)
 		{
-			count_line++;
+			global.count_line++;
 			continue;
 		}
 		process = get_func(instruction);
 		if (process == NULL)
 		{
-			fprintf(stderr, "L%d: unknown instruction %s\n", count_line, instruction);
+			fprintf(stderr, "L%d: unknown instruction %s\n", global.count_line, instruction);
 			fclose(global.file);
 		    free_dlistint(*head);
 		    free(global.buffer);
 			exit(EXIT_FAILURE);
 		}
 		process(head, global.push_argv);
-		count_line++;
+		global.count_line++;
 	}
 	free(global.buffer);
 	aux_close = fclose(global.file);
@@ -83,7 +84,7 @@ int isnumber(char *str)
  *
  * Return: none
 */
-char *parse_line_out(char *line, stack_t **head, unsigned int count_line)
+char *parse_line_out(char *line, stack_t **head)
 {
 	char *op_code, *push, *argv;
 	(void)head;
@@ -102,7 +103,7 @@ char *parse_line_out(char *line, stack_t **head, unsigned int count_line)
 		}
 		else
 		{
-			fprintf(stderr, "L%d: usage: push integer\n", count_line);
+			fprintf(stderr, "L%d: usage: push integer\n", global.count_line);
 			fclose(global.file);
 		    free_dlistint(*head);
 		    free(global.buffer);

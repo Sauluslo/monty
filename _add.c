@@ -4,15 +4,14 @@
  * @stack: pointer to lists for monty stack
  * @line_number: number of line opcode occurs on
 */
-void _add(stack_t **stack, unsigned int line_number)
+void _add(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
 {
 	stack_t *temp = *stack;
-	int sum = 0, i = 0, count_line = 1;
+	int sum = 0, i = 0;
 
 	if (temp == NULL)
 	{
-		count_line += 1;
-		fprintf(stderr, "L%d: can't add, stack too short\n", count_line);
+		fprintf(stderr, "L%d: can't add, stack too short\n", global.count_line);
 		fclose(global.file);
 		free_dlistint(*stack);
 		free(global.buffer);
@@ -27,8 +26,7 @@ void _add(stack_t **stack, unsigned int line_number)
 
 	if (stack == NULL || (*stack)->next == NULL || i <= 1)
 	{
-		count_line += 1;
-		fprintf(stderr, "L%d: can't add, stack too short\n", count_line);
+		fprintf(stderr, "L%d: can't add, stack too short\n", global.count_line);
 		fclose(global.file);
 		free_dlistint(*stack);
 		free(global.buffer);

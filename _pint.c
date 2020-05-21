@@ -2,18 +2,16 @@
 /**
  * _pint - print int a top of stack
  * @stack: pointer to linked list stack
- * @line_number: number of line opcode occurs on
  *
 */
-void _pint(stack_t **stack, unsigned int line_number)
+void _pint(stack_t **stack, __attribute__ ((unused))unsigned int line_number)
 {
 	stack_t *iterator;
 
 	iterator = *stack;
 	if (iterator == NULL)
 	{
-		line_number += 1;
-		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
+		fprintf(stderr, "L%d: can't pint, stack empty\n", global.count_line);
 		fclose(global.file);
 		free_dlistint(*stack);
 		free(global.buffer);
