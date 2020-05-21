@@ -7,12 +7,12 @@
 void _add(stack_t **stack, unsigned int line_number)
 {
 	stack_t *temp = *stack;
-	int sum = 0, i = 0;
+	int sum = 0, i = 0, count_line = 1;
 
 	if (temp == NULL)
 	{
-		line_number += 1;
-		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
+		count_line += 1;
+		fprintf(stderr, "L%d: can't add, stack too short\n", count_line);
 		fclose(global.file);
 		free_dlistint(*stack);
 		free(global.buffer);
@@ -27,8 +27,8 @@ void _add(stack_t **stack, unsigned int line_number)
 
 	if (stack == NULL || (*stack)->next == NULL || i <= 1)
 	{
-		line_number += 1;
-		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
+		count_line += 1;
+		fprintf(stderr, "L%d: can't add, stack too short\n", count_line);
 		fclose(global.file);
 		free_dlistint(*stack);
 		free(global.buffer);
